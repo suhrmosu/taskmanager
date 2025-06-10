@@ -4,8 +4,19 @@ import amplifyLogo from './assets/Amplify.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
+import { generateClient } from "aws-amplify/data";
+
 function App() {
-  const [count, setCount] = useState(0)
+  /**
+  * @type {import('aws-amplify/data').Client<import('../amplify/data/resource').Schema>}
+  */
+  const client = generateClient(); // use this Data client for CRUDL requests
+  const fetchTodos = async () => {
+    const { data: todos } = await client.models.Todo.list();
+    return <ul>{todos.map(todo => <li key={todo.id}>{todo.content}</li>)}</ul>
+  };
+
+  const [count, setCount] = useState(1)
 
   return (
     <>
@@ -26,9 +37,10 @@ function App() {
           count is {count}
         </button>
         <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+          Hi <code>Employer</code> count me in!
         </p>
       </div>
+      <ul>{fetchTodos}</ul>
       <p className="read-the-docs">
         Click on the Vite and React and Amplify logos to learn more
       </p>
