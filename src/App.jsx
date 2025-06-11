@@ -11,13 +11,14 @@ import StackPage from './pages/StackPage';
 import TasksPage from './pages/Tasks'; // beta
 
 
-import { generateClient } from "aws-amplify/data";
+// import { generateClient } from "aws-amplify/data";
+// import { Schema } from "../amplify/data/resource";
 
 function App() {
-  /**
-  * @type {import('aws-amplify/data').Client<import('../amplify/data/resource').Schema>}
-  */
-  const client = generateClient(); // use this Data client for CRUDL requests
+  // /**
+  // * @type {import('aws-amplify/data').Client<import('../amplify/data/resource').Schema>}
+  // */
+  // const client = generateClient<Schema>({}); // use this Data client for CRUDL requests
   // const fetchTodos = async () => {
   //   const { data: todos, errors } = await client.models.Todo.list({
   //     authMode: 'oidc',
@@ -67,7 +68,7 @@ function App() {
           <section>
             <Routes>
               <Route path="/" element={<StackPage/>} />
-              <Route path="/tasks" element={<TasksPage client={client}/>} />
+              <Route path="/tasks" element={<TasksPage />} />
             </Routes>
           </section>
         </main>

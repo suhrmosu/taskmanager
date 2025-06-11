@@ -1,6 +1,11 @@
 import React from 'react';
+import { generateClient } from 'aws-amplify/data';
 
-function TasksPage(client) {
+function TasksPage() {
+    /**
+     * @type {import('aws-amplify/data').Client<import('../amplify/data/resource').Schema>}
+     */
+    const client = generateClient();
 
     const fetchTodos = async () => {
         
