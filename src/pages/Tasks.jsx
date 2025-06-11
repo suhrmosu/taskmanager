@@ -1,7 +1,9 @@
 import React from 'react';
+import { Amplify } from 'aws-amplify';
 import { generateClient } from 'aws-amplify/data';
 
 function TasksPage() {
+    Amplify.configure()
     /**
      * @type {import('aws-amplify/data').Client<import('../amplify/data/resource').Schema>}
      */
@@ -12,6 +14,7 @@ function TasksPage() {
         const { data: todos, errors } = await client.models.Todo.list();
         if (errors) {
             console.log(errors);
+            return (<p>Empty List</p>)
         }
         return (
         <div>
